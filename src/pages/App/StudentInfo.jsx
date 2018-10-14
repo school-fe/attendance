@@ -32,8 +32,8 @@ export default class StudentInfo extends Component {
         'http://58.119.112.12:8081/app/get_teacher_attendance',
         {
           teacherid,
-          // nowtime: moment().format('YYYYM-MM-DD hh:mm:ss'),
-          nowtime: '2018-10-09 10:38:26',
+          nowtime: moment().format('YYYYM-MM-DD hh:mm:ss'),
+          // nowtime: '2018-10-09 10:38:26',
         },
         {},
       )

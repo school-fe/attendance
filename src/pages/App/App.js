@@ -44,8 +44,8 @@ class App extends Component {
         {
           buildingname,
           classroomname: classroom,
-          // nowtime: moment().format('YYYYM-MM-DD hh:mm:ss'),
-          nowtime: '2018-10-09 10:38:26',
+          nowtime: moment().format('YYYYM-MM-DD hh:mm:ss'),
+          // nowtime: '2018-10-09 10:38:26',
         },
         {},
       )
@@ -69,13 +69,15 @@ class App extends Component {
 
   render() {
     const { hasClass, classinfo } = this.state;
-    return <div className="app">
-      {hasClass && classinfo ? (
+    return (
+      <div className="app">
+        {hasClass && classinfo ? (
           <StudentInfo classinfo={classinfo} />
         ) : (
           <Banner />
         )}
-      </div>;
+      </div>
+    );
   }
 }
 
