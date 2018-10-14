@@ -49,11 +49,11 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
 
-const getEntry = function (globPath) {
+const getEntry = function(globPath) {
   const entries = {
     vendor: [require.resolve('./polyfills'), paths.appIndexJs],
   };
-  glob.sync(globPath).forEach((entry) => {
+  glob.sync(globPath).forEach(entry => {
     const pathname = entry
       .split('/')
       .splice(3)
@@ -69,7 +69,7 @@ const entries = getEntry('./src/entries/**/*.{tsx,ts,jsx,js}');
 const chunks = Object.keys(entries);
 
 const htmlPlugins = [];
-chunks.forEach((pathname) => {
+chunks.forEach(pathname => {
   if (pathname === 'vendor') {
     return;
   }
@@ -139,7 +139,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'raw-loader',
+        loader: 'url-loader',
       },
       {
         test: /\.(css|less)$/,
