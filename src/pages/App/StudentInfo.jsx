@@ -47,10 +47,12 @@ export default class StudentInfo extends Component {
             this.parseStudentList(res.studentlist);
           } else {
             console.error('get_teacher_attendance', res);
+            window.location.reload(true);
           }
         })
         .catch(res => {
           console.error('get_teacher_attendance', res);
+          window.location.reload(true);
         });
     }
   };
