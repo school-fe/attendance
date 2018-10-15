@@ -6,7 +6,6 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 // const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const autoprefixer = require('autoprefixer');
-const postcssToVwAndRem = require('byted-postcss-px-to-viewport-and-rem');
 
 const glob = require('glob');
 const getClientEnvironment = require('./env');
@@ -24,7 +23,7 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
-const getEntry = function (globPath) {
+const getEntry = function(globPath) {
   const entries = {
     vendor: [
       require.resolve('./polyfills'),
@@ -32,7 +31,7 @@ const getEntry = function (globPath) {
       paths.appIndexJs,
     ],
   };
-  glob.sync(globPath).forEach((entry) => {
+  glob.sync(globPath).forEach(entry => {
     const pathname = entry
       .split('/')
       .splice(3)
@@ -48,7 +47,7 @@ const entries = getEntry('./src/entries/**/*.{tsx,ts,jsx,js}');
 const chunks = Object.keys(entries);
 
 const htmlPlugins = [];
-chunks.forEach((pathname) => {
+chunks.forEach(pathname => {
   if (pathname === 'vendor') {
     return;
   }
@@ -126,9 +125,6 @@ module.exports = {
               plugins: [
                 autoprefixer({
                   browsers: ['Android >= 4.3', 'iOS >= 8'],
-                }),
-                postcssToVwAndRem({
-                  enableConvert: false,
                 }),
               ],
             },

@@ -40,6 +40,8 @@
     "classnames": "^2.2.6",
     "css-loader": "0.28.4",
     "dotenv": "4.0.0",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
     "fork-ts-checker-webpack-plugin": "^0.4.9",
@@ -72,8 +74,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
-    "byted-postcss-px-to-viewport-and-rem": "^0.6.2",
-    "eslint-config-tt-pgc": "^1.0.3",
     "file-loader": "^2.0.0",
     "postcss-loader": "^2.0.6",
     "precss": "^3.1.2"

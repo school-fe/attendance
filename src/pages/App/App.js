@@ -64,6 +64,8 @@ class App extends Component {
         .catch(res => {
           console.error('get_classroom_info', res);
         });
+    } else {
+      console.error('get_classroom_info 缺少参数');
     }
   }
 

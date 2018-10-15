@@ -8,7 +8,6 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const glob = require('glob');
 const autoprefixer = require('autoprefixer');
-const postcssToVwAndRem = require('byted-postcss-px-to-viewport-and-rem');
 
 const paths = require('./paths');
 
@@ -156,9 +155,6 @@ module.exports = {
               plugins: [
                 autoprefixer({
                   browsers: ['Android >= 4.3', 'iOS >= 8'],
-                }),
-                postcssToVwAndRem({
-                  enableConvert: false,
                 }),
               ],
             },

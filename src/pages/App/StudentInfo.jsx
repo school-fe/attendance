@@ -3,6 +3,8 @@ import { Progress } from 'antd';
 
 import { Request } from '../../util';
 
+var moment = require('moment');
+
 let timer = null;
 const loopGap = 5 * 1000;
 
