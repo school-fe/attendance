@@ -29,12 +29,15 @@ export default class StudentInfo extends Component {
   getStudentInfo = () => {
     const { classinfo } = this.props;
     const teacherid = classinfo[0].teacherid;
+    const classroomid = classinfo[0].classroomid;
     if (teacherid) {
       Request.get(
         'http://58.119.112.12:8081/app/get_teacher_attendance',
         {
           teacherid,
-          nowtime: moment().format('YYYY-MM-DD HH:mm:ss'),
+          nowtime: "2018-10-15 10:00:00",
+          /*nowtime: moment().format('YYYY-MM-DD HH:mm:ss'),*/
+          classroomid,
         },
         {},
       )
@@ -95,7 +98,7 @@ export default class StudentInfo extends Component {
         <div className="header">
           <div className="classInfo">
             <div id="classroomname" className="class_number">
-              {data.classroomname}
+              {classData.classroomname}
             </div>
           </div>
           <div className="detailInfo">
@@ -137,7 +140,7 @@ export default class StudentInfo extends Component {
               type="circle"
               strokeWidth={10}
               width={150}
-              percent={parseInt((data.absentpeople / data.shouldpeople) * 100)}
+              percent={parseInt((data.realpeople / data.shouldpeople) * 100)}
             />
           </div>
           <div className="middle-bar">
@@ -157,13 +160,13 @@ export default class StudentInfo extends Component {
               <div className="title">实 到：</div>
               <Progress
                 percent={parseInt(
-                  (data.absentpeople / data.shouldpeople) * 100,
+                  (data.realpeople / data.shouldpeople) * 100,
                 )}
                 strokeWidth={20}
                 className="line"
                 strokeColor="#c6f35b"
                 format={percent => {
-                  return <span> {data.absentpeople} 人</span>;
+                  return <span> {data.realpeople} 人</span>;
                 }}
                 status="active"
               />
@@ -172,15 +175,14 @@ export default class StudentInfo extends Component {
               <div className="title">未 到：</div>
               <Progress
                 percent={parseInt(
-                  (data.dayoffpeople / data.shouldpeople) * 100,
+                  ((data.shouldpeople - data.realpeople) / data.shouldpeople) * 100,
                 )}
-                percent={20}
                 strokeWidth={20}
                 className="line"
                 strokeColor="#f57a81"
                 status="active"
                 format={percent => {
-                  return <span> {data.dayoffpeople} 人</span>;
+                  return <span> {data.shouldpeople - data.realpeople} 人</span>;
                 }}
               />
             </div>
