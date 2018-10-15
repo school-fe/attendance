@@ -34,8 +34,7 @@ export default class StudentInfo extends Component {
         'http://58.119.112.12:8081/app/get_teacher_attendance',
         {
           teacherid,
-          nowtime: moment().format('YYYYM-MM-DD hh:mm:ss'),
-          // nowtime: '2018-10-09 10:38:26',
+          nowtime: moment().format('YYYY-MM-DD HH:mm:ss'),
         },
         {},
       )
@@ -124,8 +123,8 @@ export default class StudentInfo extends Component {
               <p className="teacher ml48">
                 <span className="gudinginfo">节次：</span>
                 <span id="classNumber" className="changeinfo">
-                  周{classData.week}
-                  &nbsp;&nbsp;&nbsp;第 {data.timeorder}节
+                  周{parseInt(classData.week) + 1}
+                  &nbsp;&nbsp;&nbsp;第 {parseInt(data.timeorder) + 1}节
                 </span>
               </p>
             </div>

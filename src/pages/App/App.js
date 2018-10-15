@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel } from 'antd';
 import queryString from 'query-string';
-var moment = require('moment');
 
 import Banner from './Banner';
 import StudentInfo from './StudentInfo';
@@ -9,6 +7,8 @@ import StudentInfo from './StudentInfo';
 import { Request } from '../../util';
 
 import './page.less';
+
+var moment = require('moment');
 
 class App extends Component {
   constructor(props) {
@@ -44,8 +44,7 @@ class App extends Component {
         {
           buildingname,
           classroomname: classroom,
-          nowtime: moment().format('YYYYM-MM-DD hh:mm:ss'),
-          // nowtime: '2018-10-09 10:38:26',
+          nowtime: moment().format('YYYY-MM-DD HH:mm:ss'),
         },
         {},
       )
