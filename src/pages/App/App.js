@@ -44,8 +44,7 @@ class App extends Component {
         {
           buildingname,
           classroomname: classroom,
-          // nowtime: moment().format('YYYY-MM-DD HH:mm:ss'),
-          nowtime: "2018-10-15 10:00:00",
+          nowtime: moment().format('YYYY-MM-DD HH:mm:ss'),
         },
         {},
       )
