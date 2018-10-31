@@ -10,6 +10,9 @@ import './page.less';
 
 var moment = require('moment');
 
+let timer = null;
+const loopGap = 5 * 60 * 1000;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +24,8 @@ class App extends Component {
       classinfo: null,
     };
   }
-  componentDidMount() {
+
+  getClassInfo = () => {
     /* eslint-disable */
     const values = queryString.parse(location.search);
     /* eslint-enable */
@@ -54,6 +58,7 @@ class App extends Component {
               hasClass: true,
               classinfo: res.classinfo,
             });
+            clearInterval(timer);
           } else {
             this.setState({
               hasClass: false,
@@ -66,6 +71,15 @@ class App extends Component {
     } else {
       console.error('get_classroom_info 缺少参数');
     }
+  };
+
+  componentDidMount() {
+    this.getClassInfo();
+    timer = setInterval(this.getClassInfo, loopGap);
+  }
+
+  componentWillUnmount() {
+    clearInterval(timer);
   }
 
   render() {

@@ -6,7 +6,8 @@ import { Request } from '../../util';
 var moment = require('moment');
 
 let timer = null;
-const loopGap = 5 * 1000;
+const loopGap_1s = 1 * 1000;
+const loopGap_1m = 1 * 60 * 1000;
 
 export default class StudentInfo extends Component {
   static displayName = 'StudentInfo';
@@ -45,6 +46,11 @@ export default class StudentInfo extends Component {
             this.setState({
               data: res,
             });
+            //  减少轮询
+            if (res.shouldpeople === res.realpeople + res.dayoffpeople) {
+              clearInterval(timer);
+              timer = setInterval(this.getStudentInfo, loopGap_1m);
+            }
             this.parseStudentList(res.studentlist);
           } else {
             console.error('get_teacher_attendance', res);
@@ -80,7 +86,7 @@ export default class StudentInfo extends Component {
 
   componentDidMount() {
     this.getStudentInfo();
-    timer = setInterval(this.getStudentInfo, loopGap);
+    timer = setInterval(this.getStudentInfo, loopGap_1s);
   }
 
   componentWillUnmount() {
@@ -158,9 +164,7 @@ export default class StudentInfo extends Component {
             <div style={{ clear: 'both' }}>
               <div className="title">实 到：</div>
               <Progress
-                percent={parseInt(
-                  (data.realpeople / data.shouldpeople) * 100,
-                )}
+                percent={parseInt((data.realpeople / data.shouldpeople) * 100)}
                 strokeWidth={20}
                 className="line"
                 strokeColor="#c6f35b"
@@ -174,7 +178,8 @@ export default class StudentInfo extends Component {
               <div className="title">未 到：</div>
               <Progress
                 percent={parseInt(
-                  ((data.shouldpeople - data.realpeople) / data.shouldpeople) * 100,
+                  ((data.shouldpeople - data.realpeople) / data.shouldpeople) *
+                    100,
                 )}
                 strokeWidth={20}
                 className="line"
