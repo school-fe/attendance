@@ -125,7 +125,7 @@ export default class StudentInfo extends Component {
               <p className="teacher">
                 <span className="gudinginfo">上课时间：</span>
                 <span id="date" className="changeinfo">
-                  {classData.date}
+                  {classData.starttime}
                 </span>
               </p>
               <p className="teacher ml48">
